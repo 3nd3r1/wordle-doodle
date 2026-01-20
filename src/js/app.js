@@ -2,7 +2,7 @@ class WordleImageGenerator {
     constructor() {
         this.grid = [];
         this.currentState = "correct";
-        this.wordBank = WORDS.map(word => word.toUpperCase());
+        this.wordBank = WORDS.map((word) => word.toUpperCase());
         this.answerWord = "";
         this.initGrid();
         this.bindEvents();
@@ -47,7 +47,9 @@ class WordleImageGenerator {
             .addEventListener("click", () => this.generateWords());
         document
             .getElementById("wordle-word")
-            .addEventListener("input", (e) => this.setAnswerWord(e.target.value));
+            .addEventListener("input", (e) =>
+                this.setAnswerWord(e.target.value)
+            );
     }
 
     setCurrentState(state) {
@@ -89,7 +91,9 @@ class WordleImageGenerator {
     generateWords() {
         // Check if answer word is provided
         if (!this.answerWord || this.answerWord.length !== 5) {
-            this.displayError("Please enter a 5-letter Wordle answer word first!");
+            this.displayError(
+                "Please enter a 5-letter Wordle answer word first!"
+            );
             return;
         }
 
@@ -129,21 +133,64 @@ class WordleImageGenerator {
         const upperWord = word.toUpperCase();
         const upperAnswer = this.answerWord.toUpperCase();
 
+        // Track letter counts in answer word, accounting for green positions
+        const answerLetterCounts = {};
+        const usedInGreen = new Set();
+
+        // Count available letters (excluding those used in green positions)
         for (let i = 0; i < 5; i++) {
+            const letter = upperAnswer[i];
+            if (pattern[i] === "correct") {
+                usedInGreen.add(i);
+            } else {
+                answerLetterCounts[letter] =
+                    (answerLetterCounts[letter] || 0) + 1;
+            }
+        }
+
+        // Track letters used for yellow positions
+        const yellowLettersUsed = {};
+
+        for (let i = 0; i < 5; i++) {
+            const guessLetter = upperWord[i];
+            const answerLetter = upperAnswer[i];
+
             if (pattern[i] === "correct") {
                 // Letter must match the answer word at this position
-                if (upperWord[i] !== upperAnswer[i]) {
+                if (guessLetter !== answerLetter) {
                     return false;
                 }
             } else if (pattern[i] === "present") {
                 // Letter must be in answer word but not at this position
-                if (upperWord[i] === upperAnswer[i] || !upperAnswer.includes(upperWord[i])) {
-                    return false;
+                if (guessLetter === answerLetter) {
+                    return false; // Can't be same position
                 }
+
+                // Check if letter is available (not all consumed by green positions)
+                const availableCount = answerLetterCounts[guessLetter] || 0;
+                const usedCount = yellowLettersUsed[guessLetter] || 0;
+
+                if (availableCount <= usedCount) {
+                    return false; // No more of this letter available
+                }
+
+                yellowLettersUsed[guessLetter] = usedCount + 1;
             } else if (pattern[i] === "absent") {
-                // Letter must not be in answer word at all
-                if (upperAnswer.includes(upperWord[i])) {
-                    return false;
+                // Letter must not be in answer word at all, OR all instances are consumed
+                const totalInAnswer = upperAnswer.split(guessLetter).length - 1;
+                const usedInCorrect = upperAnswer
+                    .split("")
+                    .filter(
+                        (letter, idx) =>
+                            letter === guessLetter && pattern[idx] === "correct"
+                    ).length;
+                const usedInYellow = Object.values(yellowLettersUsed).reduce(
+                    (sum, count) => sum + count,
+                    0
+                );
+
+                if (totalInAnswer > usedInCorrect + usedInYellow) {
+                    return false; // Letter should be yellow, not gray
                 }
             }
         }
