@@ -1,37 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordle Doodle</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>🎯 Wordle Doodle</h1>
-        
-        <div class="instructions">
-            <strong>How to use:</strong><br>
-            1. Select a tile state (Correct/Present/Absent)<br>
-            2. Click cells in the grid to paint your image<br>
-            3. Generate words to create your pattern!
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wordle Doodle</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>🎯 Wordle Doodle</h1>
+
+            <div class="instructions">
+                <strong>How to use:</strong><br />
+                1. Select a tile state (Correct/Present/Absent)<br />
+                2. Click cells in the grid to paint your image<br />
+                3. Generate words to create your pattern!
+            </div>
+
+            <div class="controls">
+                <button id="correct-btn" class="state-btn correct active">
+                    🟩 Correct
+                </button>
+                <button id="present-btn" class="state-btn present">
+                    🟨 Present
+                </button>
+                <button id="absent-btn" class="state-btn absent">
+                    ⬛ Absent
+                </button>
+                <button id="clear-btn" class="clear-btn">Clear Grid</button>
+                <button id="generate-btn" class="generate-btn">
+                    Generate Words
+                </button>
+            </div>
+
+            <div class="grid-container" id="grid"></div>
+
+            <div class="results" id="results">
+                Click "Generate Words" to see the word combinations that will
+                create your pattern!
+            </div>
         </div>
 
-        <div class="controls">
-            <button id="correct-btn" class="state-btn correct active">🟩 Correct</button>
-            <button id="present-btn" class="state-btn present">🟨 Present</button>
-            <button id="absent-btn" class="state-btn absent">⬛ Absent</button>
-            <button id="clear-btn" class="clear-btn">Clear Grid</button>
-            <button id="generate-btn" class="generate-btn">Generate Words</button>
-        </div>
-
-        <div class="grid-container" id="grid"></div>
-
-        <div class="results" id="results">
-            Click "Generate Words" to see the word combinations that will create your pattern!
-        </div>
-    </div>
-
-    <script src="js/app.js"></script>
-</body>
+        <script src="js/app.js"></script>
+    </body>
 </html>

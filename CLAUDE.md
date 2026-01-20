@@ -5,6 +5,7 @@ A simple web-based tool that helps you create visual patterns using Wordle's col
 ## What it does
 
 This tool lets you:
+
 - Draw images/patterns on a 5×6 Wordle grid using the three tile states (correct/green, present/yellow, absent/gray)
 - Generate word suggestions that could produce your desired pattern when used as Wordle guesses
 - Create simple pixel art like smiley faces, hearts, or geometric patterns within Wordle's constraints
@@ -12,7 +13,7 @@ This tool lets you:
 ## How to use
 
 1. **Open the interface**: Open `index.html` in a web browser
-2. **Select tile state**: Choose between Correct (🟩), Present (🟨), or Absent (⬛) 
+2. **Select tile state**: Choose between Correct (🟩), Present (🟨), or Absent (⬛)
 3. **Draw your pattern**: Click on grid cells to paint them with the selected state
 4. **Generate words**: Click "Generate Words" to get word suggestions for each row
 5. **Use in Wordle**: Take the suggested words and use them as guesses in actual Wordle games
