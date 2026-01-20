@@ -42,9 +42,24 @@ This tool lets you:
 - Responsive grid layout that scales to screen size
 - Clean, Wordle-inspired visual design
 
+## Project Structure
+
+```
+wordle-doodle/
+├── src/
+│   ├── index.html      # Main HTML file
+│   ├── css/
+│   │   └── styles.css  # All styling
+│   └── js/
+│       └── app.js      # Main application logic
+└── CLAUDE.md           # This documentation
+```
+
 ## Files
 
-- `index.html` - Complete single-file application with embedded CSS and JavaScript
+- `src/index.html` - Clean HTML structure with external CSS/JS references
+- `src/css/styles.css` - All styling and visual design
+- `src/js/app.js` - Complete JavaScript application logic
 - `CLAUDE.md` - This documentation file
 
 ## Usage tips
