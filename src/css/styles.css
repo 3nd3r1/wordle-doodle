@@ -83,7 +83,7 @@ h1 {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.15s ease-in-out;
-    background-color: var(--card));
+    background-color: var(--card);
     color: var(--foreground);
     border-radius: 4px;
 }
@@ -188,7 +188,7 @@ button:hover {
 }
 
 .clear-btn:hover {
-    background-color: var(--muted) / 0.8);
+    background-color: rgba(38, 38, 38, 0.8);
 }
 
 .results {
@@ -221,4 +221,36 @@ button:hover {
     font-size: 14px;
     border: 1px solid var(--border);
     line-height: 1.6;
+}
+
+.wordle-word-input {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.wordle-word-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.wordle-word-input input {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background-color: var(--card);
+    color: var(--card-foreground);
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 160px;
+}
+
+.wordle-word-input input:focus {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 2px rgba(113, 113, 122, 0.2);
 }

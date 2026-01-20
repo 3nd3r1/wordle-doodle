@@ -78,7 +78,6 @@ class WordleImageGenerator {
         });
     }
 
-
     generateWords() {
         const results = [];
 

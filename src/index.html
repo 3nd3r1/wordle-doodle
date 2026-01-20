@@ -17,6 +17,17 @@
                 3. Generate words to create your pattern!
             </div>
 
+            <div class="wordle-word-input">
+                <label for="wordle-word">Wordle Answer (optional):</label>
+                <input
+                    type="text"
+                    id="wordle-word"
+                    placeholder="Enter 5-letter word"
+                    maxlength="5"
+                    autocomplete="off"
+                />
+            </div>
+
             <div class="controls">
                 <div class="selector-group">
                     <button id="correct-btn" class="state-btn correct active">
@@ -29,7 +40,7 @@
                         ⬛ Absent
                     </button>
                 </div>
-                
+
                 <div class="action-group">
                     <button id="clear-btn" class="clear-btn">Clear Grid</button>
                     <button id="generate-btn" class="generate-btn">
