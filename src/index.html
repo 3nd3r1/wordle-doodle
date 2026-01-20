@@ -18,19 +18,24 @@
             </div>
 
             <div class="controls">
-                <button id="correct-btn" class="state-btn correct active">
-                    🟩 Correct
-                </button>
-                <button id="present-btn" class="state-btn present">
-                    🟨 Present
-                </button>
-                <button id="absent-btn" class="state-btn absent">
-                    ⬛ Absent
-                </button>
-                <button id="clear-btn" class="clear-btn">Clear Grid</button>
-                <button id="generate-btn" class="generate-btn">
-                    Generate Words
-                </button>
+                <div class="selector-group">
+                    <button id="correct-btn" class="state-btn correct active">
+                        🟩 Correct
+                    </button>
+                    <button id="present-btn" class="state-btn present">
+                        🟨 Present
+                    </button>
+                    <button id="absent-btn" class="state-btn absent">
+                        ⬛ Absent
+                    </button>
+                </div>
+                
+                <div class="action-group">
+                    <button id="clear-btn" class="clear-btn">Clear Grid</button>
+                    <button id="generate-btn" class="generate-btn">
+                        Generate Words
+                    </button>
+                </div>
             </div>
 
             <div class="grid-container" id="grid"></div>
