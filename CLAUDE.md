@@ -1,4 +1,4 @@
-# Wordle Image Generator
+# Wordle Doodle
 
 A simple web-based tool that helps you create visual patterns using Wordle's color-coded tiles and generates word combinations to achieve those patterns.
 
