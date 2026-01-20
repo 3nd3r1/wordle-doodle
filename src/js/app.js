@@ -2,7 +2,8 @@ class WordleImageGenerator {
     constructor() {
         this.grid = [];
         this.currentState = "correct";
-        this.wordBank = WORDS;
+        this.wordBank = WORDS.map(word => word.toUpperCase());
+        this.answerWord = "";
         this.initGrid();
         this.bindEvents();
     }
@@ -44,6 +45,9 @@ class WordleImageGenerator {
         document
             .getElementById("generate-btn")
             .addEventListener("click", () => this.generateWords());
+        document
+            .getElementById("wordle-word")
+            .addEventListener("input", (e) => this.setAnswerWord(e.target.value));
     }
 
     setCurrentState(state) {
@@ -52,6 +56,10 @@ class WordleImageGenerator {
             .querySelectorAll(".state-btn")
             .forEach((btn) => btn.classList.remove("active"));
         document.getElementById(state + "-btn").classList.add("active");
+    }
+
+    setAnswerWord(word) {
+        this.answerWord = word.toUpperCase().trim();
     }
 
     toggleCell(cell) {
@@ -79,6 +87,12 @@ class WordleImageGenerator {
     }
 
     generateWords() {
+        // Check if answer word is provided
+        if (!this.answerWord || this.answerWord.length !== 5) {
+            this.displayError("Please enter a 5-letter Wordle answer word first!");
+            return;
+        }
+
         const results = [];
 
         for (let row = 0; row < 6; row++) {
@@ -111,16 +125,35 @@ class WordleImageGenerator {
     }
 
     wordMatchesPattern(word, pattern) {
+        // Ensure both word and answer are uppercase for comparison
+        const upperWord = word.toUpperCase();
+        const upperAnswer = this.answerWord.toUpperCase();
+
         for (let i = 0; i < 5; i++) {
             if (pattern[i] === "correct") {
-                continue;
+                // Letter must match the answer word at this position
+                if (upperWord[i] !== upperAnswer[i]) {
+                    return false;
+                }
             } else if (pattern[i] === "present") {
-                continue;
+                // Letter must be in answer word but not at this position
+                if (upperWord[i] === upperAnswer[i] || !upperAnswer.includes(upperWord[i])) {
+                    return false;
+                }
             } else if (pattern[i] === "absent") {
-                continue;
+                // Letter must not be in answer word at all
+                if (upperAnswer.includes(upperWord[i])) {
+                    return false;
+                }
             }
         }
+
         return true;
+    }
+
+    displayError(message) {
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = `<p style="color: var(--destructive); font-weight: 600;">${message}</p>`;
     }
 
     displayResults(results) {

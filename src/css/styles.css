@@ -223,6 +223,15 @@ button:hover {
     line-height: 1.6;
 }
 
+.instructions a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.instructions a:hover {
+    color: var(--foreground);
+}
+
 .wordle-word-input {
     margin-bottom: 24px;
     text-align: center;
